@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/one_dimension"
+        android:title="@string/one_dimensional_menu"
+        />
+    <item
+        android:id="@+id/two_dimension"
+        android:title="@string/two_dimensional_menu"
+        />
+</menu>
