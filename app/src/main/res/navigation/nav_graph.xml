@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.sejtautomata_kotlin.onedimensional.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_cellgridFragment"
+            app:destination="@id/cellgridFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cellgridFragment"
+        android:name="com.example.sejtautomata_kotlin.onedimensional.CellgridFragment"
+        android:label="CellgridFragment" />
 </navigation>

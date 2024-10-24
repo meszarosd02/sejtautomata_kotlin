@@ -16,5 +16,21 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+
+        (application as SejtautomataApplication).setNavController(navController)
+        /*(application as SejtautomataApplication).bottomNav = findViewById(R.id.bottom_nav)
+        (application as SejtautomataApplication).bottomNav!!.setOnItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.one_dimension -> {
+                    navController.navigate(R.id.homeFragment)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.two_dimension -> {
+                    navController.navigate(R.id.homeFragment2)
+                    return@setOnItemSelectedListener true
+                }
+                else -> return@setOnItemSelectedListener false
+            }
+        }*/
     }
 }
