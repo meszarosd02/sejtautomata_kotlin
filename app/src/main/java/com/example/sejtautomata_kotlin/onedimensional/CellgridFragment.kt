@@ -12,7 +12,7 @@ class CellgridFragment: Fragment() {
     private var _binding: OnedCellgridFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var allGeneration = AllGenerations(20, 1)
+    private var allGeneration = AllGenerations(51, 110)
 
     private var adapter: CellGridAdapter? = null
 
@@ -22,7 +22,7 @@ class CellgridFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         allGeneration.addEmptyGeneration()
-        for(i in 0..10){
+        for(i in 0..50){
             allGeneration.generateNextGeneration()
         }
         adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())

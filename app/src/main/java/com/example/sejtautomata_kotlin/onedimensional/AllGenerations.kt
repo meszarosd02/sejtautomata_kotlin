@@ -23,16 +23,51 @@ class AllGenerations {
 
     fun generateNextGeneration(){
         val newGeneration = Generation(this.size, this.ruleSet)
+        val ruleSetBinary = ruleSetIntToBinary()
         for(i in 0..<this.size){
-            newGeneration[i].isActive = when(getLastGeneration()[(i+this.size-1)%this.size].isActive){
-                false -> false
-                true -> true
-            } && when(getLastGeneration()[(i+this.size)%this.size].isActive){
-                false -> true
-                true -> false
-            } && when(getLastGeneration()[(i+this.size+1)%this.size].isActive){
-                false -> true
-                true -> false
+            val left = getLastGeneration()[(i+this.size-1)%this.size].isActive
+            val center = getLastGeneration()[(i+this.size)%this.size].isActive
+            val right = getLastGeneration()[(i+this.size+1)%this.size].isActive
+
+            if(left && center && right){
+                if(ruleSetBinary[0].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(left && center && !right){
+                if(ruleSetBinary[1].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(left && !center && right){
+                if(ruleSetBinary[2].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(left && !center && !right){
+                if(ruleSetBinary[3].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(!left && center && right){
+                if(ruleSetBinary[4].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(!left && center && !right){
+                if(ruleSetBinary[5].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(!left && !center && right){
+                if(ruleSetBinary[6].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
+            }
+            if(!left && !center && !right){
+                if(ruleSetBinary[7].toString() == "1"){
+                    newGeneration[i].isActive = true
+                }
             }
         }
         addGeneration(newGeneration)
@@ -60,5 +95,15 @@ class AllGenerations {
             cellList.addAll(i.getCells())
         }
         return cellList
+    }
+
+    private fun ruleSetIntToBinary(): String{
+        var buffer = this.ruleSet
+        var result = ""
+        for(i in 0..7){
+            result += (buffer%2).toString()
+            buffer /= 2
+        }
+        return result.reversed()
     }
 }

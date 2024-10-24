@@ -12,8 +12,8 @@ class Generation {
         this.size = size
         this.ruleSet = ruleSet
         for(i in 0..<size){
-            this.cells.add(Cell(when(i % 3){
-                0 -> true
+            this.cells.add(Cell(when(i){
+                size-1 -> true
                 else -> false
             }))
         }
