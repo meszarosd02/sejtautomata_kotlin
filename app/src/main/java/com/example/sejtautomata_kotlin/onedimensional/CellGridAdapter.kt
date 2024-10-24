@@ -15,7 +15,8 @@ import com.example.sejtautomata_kotlin.R
 class CellGridAdapter(
     context: Context,
     resourceId: Int,
-    private var items: ArrayList<Cell>
+    private var items: ArrayList<Cell>,
+    private var generationSize: Int
 ): ArrayAdapter<Cell>(context, resourceId, items) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var listItemView: View? = convertView
@@ -24,7 +25,7 @@ class CellGridAdapter(
         }
         val displayMetrics = context.resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
-        val itemWidth = screenWidth / items.size
+        val itemWidth = screenWidth / generationSize
 
         listItemView?.layoutParams = AbsListView.LayoutParams(itemWidth, itemWidth)
         val cell: Cell? = getItem(position)

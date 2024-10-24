@@ -1,5 +1,7 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
+import kotlin.random.Random
+
 class Generation {
     private var size: Int
     private var cells: ArrayList<Cell> = ArrayList()
@@ -12,10 +14,15 @@ class Generation {
         for(i in 0..<size){
             this.cells.add(Cell(when(i % 3){
                 0 -> true
-                1 -> false
                 else -> false
             }))
         }
+    }
+
+    constructor(size: Int, ruleSet: Int, cells: ArrayList<Cell>){
+        this.size = size
+        this.ruleSet = ruleSet
+        this.cells = cells
     }
 
     constructor(previousGeneration: Generation){
@@ -33,5 +40,9 @@ class Generation {
 
     fun getCells(): ArrayList<Cell>{
         return this.cells
+    }
+
+    operator fun get(item: Int): Cell{
+        return cells[item]
     }
 }

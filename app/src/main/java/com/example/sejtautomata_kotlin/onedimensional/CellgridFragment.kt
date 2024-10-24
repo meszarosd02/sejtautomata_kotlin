@@ -21,8 +21,11 @@ class CellgridFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        allGeneration.addEmptyGeneration(5)
-        adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getLastGeneration().getCells())
+        allGeneration.addEmptyGeneration()
+        for(i in 0..10){
+            allGeneration.generateNextGeneration()
+        }
+        adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())
         _binding = OnedCellgridFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
