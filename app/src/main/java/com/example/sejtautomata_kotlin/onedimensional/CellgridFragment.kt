@@ -12,7 +12,7 @@ class CellgridFragment: Fragment() {
     private var _binding: OnedCellgridFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var generationZero = Generation(20)
+    private var allGeneration = AllGenerations(20, 1)
 
     private var adapter: CellGridAdapter? = null
 
@@ -21,7 +21,8 @@ class CellgridFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, generationZero.getCells())
+        allGeneration.addEmptyGeneration(5)
+        adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getLastGeneration().getCells())
         _binding = OnedCellgridFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -29,7 +30,7 @@ class CellgridFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.cellGrid.numColumns = generationZero.getSize()
+        binding.cellGrid.numColumns = allGeneration.getSize()
         binding.cellGrid.adapter = adapter
 
     }
