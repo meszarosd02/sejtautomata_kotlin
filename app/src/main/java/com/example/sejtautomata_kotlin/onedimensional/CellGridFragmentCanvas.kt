@@ -1,7 +1,6 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.example.sejtautomata_kotlin.databinding.OnedCellgridFragmentCanvasBin
 
 class CellGridFragmentCanvas: Fragment() {
     private var _binding: OnedCellgridFragmentCanvasBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     private val allGenerations = AllGenerations(100, 110)
 
@@ -34,6 +33,10 @@ class CellGridFragmentCanvas: Fragment() {
 
         binding.addGenerationButton.setOnClickListener {
             generateGenerations()
+        }
+
+        binding.modify.setOnClickListener {
+            ModifyAutomatonDialogFragment().show(childFragmentManager, "ModifyAutomatonDialogFragment")
         }
     }
 
