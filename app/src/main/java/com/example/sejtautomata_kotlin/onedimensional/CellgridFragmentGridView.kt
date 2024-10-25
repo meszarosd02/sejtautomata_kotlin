@@ -14,7 +14,7 @@ class CellgridFragmentGridView: Fragment() {
 
     private var allGeneration = AllGenerations(51, 110)
 
-    private var adapter: CellGridAdapter? = null
+    private var adapter: CellGridAdapterGridView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +22,7 @@ class CellgridFragmentGridView: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         allGeneration.addEmptyGeneration()
-        adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())
+        adapter = CellGridAdapterGridView(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())
         _binding = OnedCellgridFragmentGridviewBinding.inflate(inflater, container, false)
         return binding.root
     }

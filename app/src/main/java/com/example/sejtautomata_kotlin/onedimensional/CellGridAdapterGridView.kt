@@ -1,7 +1,6 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,9 @@ import android.widget.AbsListView
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.ListAdapter
 import com.example.sejtautomata_kotlin.R
 
-class CellGridAdapter(
+class CellGridAdapterGridView(
     context: Context,
     resourceId: Int,
     private var items: ArrayList<Cell>,

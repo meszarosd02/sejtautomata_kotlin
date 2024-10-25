@@ -25,7 +25,7 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.startButton.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCellgridFragment())
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCellgridFragmentRecyclerView())
         }
     }
 }
