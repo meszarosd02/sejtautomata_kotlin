@@ -7,15 +7,29 @@ class Generation {
     private var cells: ArrayList<Cell> = ArrayList()
     private var ruleSet: Int
     private var previousGeneration: Generation? = null
+    private val RANDOM: Boolean = true
 
     constructor(size: Int, ruleSet: Int){
         this.size = size
         this.ruleSet = ruleSet
+        val rand = Random(System.currentTimeMillis())
         for(i in 0..<size){
-            this.cells.add(Cell(when(i % 2){
-                1 -> true
-                else -> false
-            }))
+            if(!RANDOM) {
+                this.cells.add(
+                    Cell(
+                        when (i % 2) {
+                            1 -> true
+                            else -> false
+                        }
+                    )
+                )
+            }else{
+                this.cells.add(
+                    Cell(
+                        rand.nextBoolean()
+                    )
+                )
+            }
         }
     }
 

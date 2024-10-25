@@ -11,7 +11,10 @@ class CellGridFragmentCanvas: Fragment() {
     private var _binding: OnedCellgridFragmentCanvasBinding? = null
     val binding get() = _binding!!
 
-    private val allGenerations = AllGenerations(100, 110)
+    var rowSize = 100
+    var ruleSet = 110
+
+    private val allGenerations = AllGenerations(rowSize, ruleSet)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +41,17 @@ class CellGridFragmentCanvas: Fragment() {
         binding.modify.setOnClickListener {
             ModifyAutomatonDialogFragment().show(childFragmentManager, "ModifyAutomatonDialogFragment")
         }
+
+        binding.generateRandom.setOnClickListener {
+            newRandomGenerationZero()
+        }
+    }
+
+    private fun newRandomGenerationZero() {
+        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+            addEmptyGeneration()
+        }
+        adjustHeight()
     }
 
     private fun generateGenerations() {
@@ -56,10 +70,10 @@ class CellGridFragmentCanvas: Fragment() {
     }
 
     private fun adjustHeight(){
-        val newHeight = binding.automata.allGenerations?.getGenerations()?.size?.times(binding.automata.currentCellSize)
+        /*val newHeight = binding.automata.allGenerations?.getGenerations()?.size?.times(binding.automata.currentCellSize)
         binding.automata.layoutParams = binding.automata.layoutParams.apply{
             height = newHeight!!
-        }
+        }*/
         binding.automata.requestLayout()
         binding.automata.invalidate()
     }

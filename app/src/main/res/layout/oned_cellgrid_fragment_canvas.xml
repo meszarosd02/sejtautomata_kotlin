@@ -9,8 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="11"
+        android:weightSum="12"
         android:orientation="vertical">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
             <com.example.sejtautomata_kotlin.onedimensional.AutomataCanvas
                 android:id="@+id/automata"
                 android:layout_width="match_parent"

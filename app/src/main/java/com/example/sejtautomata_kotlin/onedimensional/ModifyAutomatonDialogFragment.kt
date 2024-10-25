@@ -66,9 +66,6 @@ class ModifyAutomatonDialogFragment: DialogFragment() {
         }
 
         binding.setButton.setOnClickListener {
-            Log.i("asd", binding.cellSize.text.toString())
-            Log.i("asd", binding.ruleset.text.toString())
-
             newSize = if(newSize == -1){
                 parentFragmentCanvas!!.binding.automata.allGenerations!!.getSize()
             }else{
@@ -84,7 +81,10 @@ class ModifyAutomatonDialogFragment: DialogFragment() {
             parentFragmentCanvas!!.binding.automata.allGenerations = AllGenerations(newSize, newRule).apply {
                 addEmptyGeneration()
             }
+            parentFragmentCanvas!!.rowSize = newSize
+            parentFragmentCanvas!!.ruleSet = newRule
             parentFragmentCanvas!!.binding.automata.invalidate()
+            parentFragmentCanvas!!.binding.toolbar.title = newRule.toString()
             Log.i("asd", "size: ${newSize}; rule: ${newRule}")
             (dialog as AlertDialog).dismiss()
         }
