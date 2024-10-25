@@ -12,7 +12,7 @@ class CellGridFragmentCanvas: Fragment() {
     private var _binding: OnedCellgridFragmentCanvasBinding? = null
     private val binding get() = _binding!!
 
-    private val allGenerations = AllGenerations(30, 110)
+    private val allGenerations = AllGenerations(100, 110)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,7 +53,7 @@ class CellGridFragmentCanvas: Fragment() {
     }
 
     private fun adjustHeight(){
-        val newHeight = binding.automata.allGenerations?.getGenerations()?.size?.times(binding.automata.cellSize)
+        val newHeight = binding.automata.allGenerations?.getGenerations()?.size?.times(binding.automata.currentCellSize)
         binding.automata.layoutParams = binding.automata.layoutParams.apply{
             height = newHeight!!
         }
