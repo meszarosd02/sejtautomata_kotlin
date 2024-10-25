@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.sejtautomata_kotlin.R
-import com.example.sejtautomata_kotlin.databinding.OnedCellgridFragmentBinding
+import com.example.sejtautomata_kotlin.databinding.OnedCellgridFragmentGridviewBinding
 
 class CellgridFragmentGridView: Fragment() {
-    private var _binding: OnedCellgridFragmentBinding? = null
+    private var _binding: OnedCellgridFragmentGridviewBinding? = null
     private val binding get() = _binding!!
 
     private var allGeneration = AllGenerations(51, 110)
@@ -23,7 +23,7 @@ class CellgridFragmentGridView: Fragment() {
     ): View? {
         allGeneration.addEmptyGeneration()
         adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())
-        _binding = OnedCellgridFragmentBinding.inflate(inflater, container, false)
+        _binding = OnedCellgridFragmentGridviewBinding.inflate(inflater, container, false)
         return binding.root
     }
 
