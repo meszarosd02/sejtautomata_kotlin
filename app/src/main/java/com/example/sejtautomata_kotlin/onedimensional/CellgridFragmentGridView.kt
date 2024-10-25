@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.sejtautomata_kotlin.R
 import com.example.sejtautomata_kotlin.databinding.OnedCellgridFragmentBinding
 
-class CellgridFragment: Fragment() {
+class CellgridFragmentGridView: Fragment() {
     private var _binding: OnedCellgridFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -22,9 +22,6 @@ class CellgridFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         allGeneration.addEmptyGeneration()
-        for(i in 0..50){
-            allGeneration.generateNextGeneration()
-        }
         adapter = CellGridAdapter(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())
         _binding = OnedCellgridFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -36,5 +33,22 @@ class CellgridFragment: Fragment() {
         binding.cellGrid.numColumns = allGeneration.getSize()
         binding.cellGrid.adapter = adapter
 
+        binding.addGenerationButton.setOnClickListener{
+            generateGenerations()
+        }
+
+    }
+
+    private fun generateGenerations() {
+        var count = try {
+            binding.generationCount.text.toString().toInt()
+        }catch(e: Exception){
+            0
+        }
+        if(count > 0) {
+            for (i in 0..<count) {
+                allGeneration.generateNextGeneration()
+            }
+        }
     }
 }

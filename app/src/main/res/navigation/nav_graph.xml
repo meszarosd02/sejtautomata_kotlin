@@ -13,6 +13,6 @@
     </fragment>
     <fragment
         android:id="@+id/cellgridFragment"
-        android:name="com.example.sejtautomata_kotlin.onedimensional.CellgridFragment"
+        android:name="com.example.sejtautomata_kotlin.onedimensional.CellgridFragmentGridView"
         android:label="CellgridFragment" />
 </navigation>
