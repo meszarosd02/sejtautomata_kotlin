@@ -8,11 +8,11 @@
         android:name="com.example.sejtautomata_kotlin.onedimensional.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_cellgridFragmentRecyclerView"
-            app:destination="@id/cellgridFragmentRecyclerView" />
+            android:id="@+id/action_homeFragment_to_cellGridFragmentCanvas"
+            app:destination="@id/cellGridFragmentCanvas" />
     </fragment>
     <fragment
-        android:id="@+id/cellgridFragmentRecyclerView"
-        android:name="com.example.sejtautomata_kotlin.onedimensional.CellgridFragmentRecyclerView"
-        android:label="CellgridFragmentRecyclerView" />
+        android:id="@+id/cellGridFragmentCanvas"
+        android:name="com.example.sejtautomata_kotlin.onedimensional.CellGridFragmentCanvas"
+        android:label="CellGridFragmentCanvas" />
 </navigation>
