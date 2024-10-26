@@ -84,7 +84,7 @@ class ModifyAutomatonDialogFragment: DialogFragment() {
             parentFragmentCanvas!!.rowSize = newSize
             parentFragmentCanvas!!.ruleSet = newRule
             parentFragmentCanvas!!.binding.automata.invalidate()
-            parentFragmentCanvas!!.binding.toolbar.title = newRule.toString()
+            parentFragmentCanvas!!.binding.toolbar.title = "Rule: ${newRule}; Size: ${newSize}"
             Log.i("asd", "size: ${newSize}; rule: ${newRule}")
             (dialog as AlertDialog).dismiss()
         }

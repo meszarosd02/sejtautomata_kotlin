@@ -53,10 +53,10 @@
                 android:layout_height="wrap_content"
                 android:text="Modify automaton"/>
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/generate_random"
+                android:id="@+id/set_gen_zero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Random init"/>
+                android:text="Set generation zero"/>
         </LinearLayout>
     </LinearLayout>
 </layout>

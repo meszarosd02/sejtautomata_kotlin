@@ -2,6 +2,7 @@ package com.example.sejtautomata_kotlin.onedimensional
 
 import android.util.Log
 import java.util.Collections
+import kotlin.random.Random
 
 class AllGenerations {
     private var generations: ArrayList<Generation> = ArrayList()
@@ -29,38 +30,39 @@ class AllGenerations {
             val center = getLastGeneration()[(i+this.size)%this.size].isActive
             val right = getLastGeneration()[(i+this.size+1)%this.size].isActive
             if(left && center && right){
-                newGeneration[i].isActive = ruleSetBinary[0].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[0].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[0]}")
             }
             if(left && center && !right){
-                newGeneration[i].isActive = ruleSetBinary[1].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[1].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[1]}")
             }
             if(left && !center && right){
-                newGeneration[i].isActive = ruleSetBinary[2].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[2].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[2]}")
             }
             if(left && !center && !right){
-                newGeneration[i].isActive = ruleSetBinary[3].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[3].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[3]}")
             }
             if(!left && center && right){
-                newGeneration[i].isActive = ruleSetBinary[4].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[4].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[4]}")
             }
             if(!left && center && !right){
-                newGeneration[i].isActive = ruleSetBinary[5].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[5].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[5]}")
             }
             if(!left && !center && right){
-                newGeneration[i].isActive = ruleSetBinary[6].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[6].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[6]}")
             }
             if(!left && !center && !right){
-                newGeneration[i].isActive = ruleSetBinary[7].toString() != "0"
+                newGeneration[i].isActive = (ruleSetBinary[7].toString() != "0")
                 Log.i("asd", "${if (left) 1 else 0}${if (center) 1 else 0}${if (right) 1 else 0} -> ${ruleSetBinary[7]}")
             }
         }
+        Log.i("asd", newGeneration.toString())
         addGeneration(newGeneration)
     }
 
@@ -96,5 +98,33 @@ class AllGenerations {
             buffer /= 2
         }
         return result.reversed()
+    }
+
+    fun randomGenerationZero() {
+        this.generations.clear()
+        val newGen: ArrayList<Cell> = ArrayList()
+        val rand = Random(System.currentTimeMillis())
+        for(i in 0..<this.size){
+            newGen.add(Cell(rand.nextBoolean()))
+        }
+        this.generations.add(Generation(this.size, this.ruleSet, newGen))
+    }
+
+    fun lastCellGenerationZero() {
+        this.generations.clear()
+        val newGen: ArrayList<Cell> = ArrayList()
+        for(i in 0..<this.size){
+            newGen.add(Cell(i == this.size-1))
+        }
+        this.generations.add(Generation(this.size, this.ruleSet, newGen))
+    }
+
+    fun nthCellGenerationZero(n: Int) {
+        this.generations.clear()
+        val newGen: ArrayList<Cell> = ArrayList()
+        for(i in 0..<this.size){
+            newGen.add(Cell(i % n == 0))
+        }
+        this.generations.add(Generation(this.size, this.ruleSet, newGen))
     }
 }

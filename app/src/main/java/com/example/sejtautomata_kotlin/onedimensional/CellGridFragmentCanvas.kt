@@ -31,7 +31,8 @@ class CellGridFragmentCanvas: Fragment() {
         binding.automata.allGenerations = allGenerations
         binding.automata.allGenerations?.apply {
             addEmptyGeneration()
-            adjustHeight()
+            refreshCanvas()
+            binding.toolbar.title = "Rule: ${this.getRuleSet()}; Size: ${this.getSize()}"
         }
 
         binding.addGenerationButton.setOnClickListener {
@@ -42,16 +43,30 @@ class CellGridFragmentCanvas: Fragment() {
             ModifyAutomatonDialogFragment().show(childFragmentManager, "ModifyAutomatonDialogFragment")
         }
 
-        binding.generateRandom.setOnClickListener {
-            newRandomGenerationZero()
+        binding.setGenZero.setOnClickListener {
+            SetGenZeroDialogFragment().show(childFragmentManager, "SetGenZeroDialogFragment")
         }
     }
 
-    private fun newRandomGenerationZero() {
+    fun newRandomGenerationZero() {
         binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
-            addEmptyGeneration()
+            randomGenerationZero()
         }
-        adjustHeight()
+        refreshCanvas()
+    }
+
+    fun newLastCellGenerationZero() {
+        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+            lastCellGenerationZero()
+        }
+        refreshCanvas()
+    }
+
+    fun newNthCellGenerationZero(n: Int){
+        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+            nthCellGenerationZero(n)
+        }
+        refreshCanvas()
     }
 
     private fun generateGenerations() {
@@ -65,15 +80,11 @@ class CellGridFragmentCanvas: Fragment() {
                 binding.automata.allGenerations?.generateNextGeneration()
             }
         }
-        adjustHeight()
+        refreshCanvas()
 
     }
 
-    private fun adjustHeight(){
-        /*val newHeight = binding.automata.allGenerations?.getGenerations()?.size?.times(binding.automata.currentCellSize)
-        binding.automata.layoutParams = binding.automata.layoutParams.apply{
-            height = newHeight!!
-        }*/
+    private fun refreshCanvas(){
         binding.automata.requestLayout()
         binding.automata.invalidate()
     }

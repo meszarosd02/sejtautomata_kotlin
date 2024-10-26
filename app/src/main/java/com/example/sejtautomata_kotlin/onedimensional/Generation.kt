@@ -1,35 +1,18 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
+import java.util.Collections
 import kotlin.random.Random
 
 class Generation {
     private var size: Int
     private var cells: ArrayList<Cell> = ArrayList()
     private var ruleSet: Int
-    private var previousGeneration: Generation? = null
-    private val RANDOM: Boolean = true
 
     constructor(size: Int, ruleSet: Int){
         this.size = size
         this.ruleSet = ruleSet
-        val rand = Random(System.currentTimeMillis())
-        for(i in 0..<size){
-            if(!RANDOM) {
-                this.cells.add(
-                    Cell(
-                        when (i % 2) {
-                            1 -> true
-                            else -> false
-                        }
-                    )
-                )
-            }else{
-                this.cells.add(
-                    Cell(
-                        rand.nextBoolean()
-                    )
-                )
-            }
+        for(i in 0..<this.size){
+            this.cells.add(Cell(false))
         }
     }
 
@@ -37,11 +20,6 @@ class Generation {
         this.size = size
         this.ruleSet = ruleSet
         this.cells = cells
-    }
-
-    constructor(previousGeneration: Generation){
-        this.size = previousGeneration.getSize()
-        this.ruleSet = previousGeneration.getRuleSet()
     }
 
     fun getSize(): Int{
@@ -56,7 +34,41 @@ class Generation {
         return this.cells
     }
 
+    private fun generateRandomCells(){
+        val rand = Random(System.currentTimeMillis())
+        for(i in 0..<this.size){
+            this.cells.add(Cell(rand.nextBoolean()))
+        }
+    }
+
+    private fun generateCenterCell() {
+
+    }
+
+    private fun generateLastCell() {
+        for(i in 0..<this.size){
+
+        }
+    }
+
+    private fun generateNthCell(n: Int) {
+        for(i in 0..<this.size){
+            when(i % n){
+                n-1 -> this.cells.add(Cell(true))
+                else -> this.cells.add(Cell(false))
+            }
+        }
+    }
+
     operator fun get(item: Int): Cell{
-        return cells[item]
+        return this.cells[item]
+    }
+
+    override fun toString(): String {
+        var result = ""
+        for(cell in this.cells){
+            result += if(cell.isActive) "1" else "0"
+        }
+        return result
     }
 }
