@@ -11,8 +11,8 @@ class CellGridFragmentCanvas: Fragment() {
     private var _binding: OnedCellgridFragmentCanvasBinding? = null
     val binding get() = _binding!!
 
-    var rowSize = 100
-    var ruleSet = 110
+    var rowSize = 20
+    var ruleSet = 1
 
     private val allGenerations = AllGenerations(rowSize, ruleSet)
 
@@ -67,6 +67,11 @@ class CellGridFragmentCanvas: Fragment() {
             nthCellGenerationZero(n)
         }
         refreshCanvas()
+    }
+    fun newCenterCellGenerationZero(){
+        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+            centerCellGenerationZero()
+        }
     }
 
     private fun generateGenerations() {

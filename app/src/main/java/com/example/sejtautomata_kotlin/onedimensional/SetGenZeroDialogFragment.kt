@@ -1,6 +1,7 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
 import android.app.Dialog
+import android.app.DownloadManager.Query
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -63,7 +64,11 @@ class SetGenZeroDialogFragment: DialogFragment() {
         }
         binding.nthButton.setOnClickListener {
             parentFragmentCanvas.newNthCellGenerationZero(n)
-            Log.i("asd", n.toString())
+            (dialog as AlertDialog).dismiss()
+        }
+
+        binding.centerButton.setOnClickListener {
+            parentFragmentCanvas.newCenterCellGenerationZero()
             (dialog as AlertDialog).dismiss()
         }
     }

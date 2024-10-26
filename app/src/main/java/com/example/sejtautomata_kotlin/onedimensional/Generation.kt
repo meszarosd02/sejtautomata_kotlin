@@ -34,32 +34,6 @@ class Generation {
         return this.cells
     }
 
-    private fun generateRandomCells(){
-        val rand = Random(System.currentTimeMillis())
-        for(i in 0..<this.size){
-            this.cells.add(Cell(rand.nextBoolean()))
-        }
-    }
-
-    private fun generateCenterCell() {
-
-    }
-
-    private fun generateLastCell() {
-        for(i in 0..<this.size){
-
-        }
-    }
-
-    private fun generateNthCell(n: Int) {
-        for(i in 0..<this.size){
-            when(i % n){
-                n-1 -> this.cells.add(Cell(true))
-                else -> this.cells.add(Cell(false))
-            }
-        }
-    }
-
     operator fun get(item: Int): Cell{
         return this.cells[item]
     }

@@ -127,4 +127,13 @@ class AllGenerations {
         }
         this.generations.add(Generation(this.size, this.ruleSet, newGen))
     }
+
+    fun centerCellGenerationZero(){
+        this.generations.clear()
+        val newGen: ArrayList<Cell> = ArrayList()
+        for(i in 0..<this.size){
+            newGen.add(Cell(i == this.size / 2))
+        }
+        this.generations.add(Generation(this.size, this.ruleSet, newGen))
+    }
 }
