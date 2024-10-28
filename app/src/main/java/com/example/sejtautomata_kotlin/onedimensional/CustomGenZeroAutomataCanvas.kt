@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import kotlin.math.max
 import kotlin.math.min
 
 class CustomGenZeroAutomataCanvas @JvmOverloads constructor(
@@ -80,6 +81,37 @@ class CustomGenZeroAutomataCanvas @JvmOverloads constructor(
     fun moveCursorIndex(position: Int){
         val centerInsideWindow = cellWindow / 2
         if(selectedCellIndex + position >= rowSize){
+            selectedCellIndex = rowSize - 1
+            cursorIndex = cellWindow - 1
+            invalidate()
+            return
+        }
+        if(selectedCellIndex + position < 0){
+            selectedCellIndex = 0
+            cursorIndex = 0
+            invalidate()
+            return
+        }
+        selectedCellIndex += position
+        val isStart = cameraStart == 0 && selectedCellIndex <= centerInsideWindow
+        val isEnd = (cameraStart + cellWindow) == rowSize
+        if(isStart){
+            cursorIndex = min(centerInsideWindow, selectedCellIndex)
+        }
+        if(isEnd){
+            cursorIndex = max(centerInsideWindow, selectedCellIndex - cameraStart)
+            cameraStart = min(selectedCellIndex - centerInsideWindow, rowSize - cellWindow)
+        }
+        if((!isStart && !isEnd) || selectedCellIndex == centerInsideWindow) {
+            cameraStart = min(max(selectedCellIndex - centerInsideWindow, 0), rowSize - cellWindow)
+            cursorIndex = min(centerInsideWindow, selectedCellIndex)
+        }
+        invalidate()
+    }
+
+    fun moveCursorIndex1(position: Int){
+        val centerInsideWindow = cellWindow / 2
+        if(selectedCellIndex + position >= rowSize){
             return
         }
         selectedCellIndex += position
@@ -93,8 +125,10 @@ class CustomGenZeroAutomataCanvas @JvmOverloads constructor(
         }
         if(isStart || isEnd){
             if(isStart){
-                if(selectedCellIndex + position > cameraStart + centerInsideWindow + 1){
+                if(selectedCellIndex > cameraStart + centerInsideWindow + 1){
                     cameraStart += position
+                }else if(selectedCellIndex > cameraStart + centerInsideWindow){
+                    cameraStart += (selectedCellIndex - centerInsideWindow)
                 }
             }else if(isEnd){
                 if(selectedCellIndex + position < cameraStart + centerInsideWindow - 1){
@@ -102,7 +136,7 @@ class CustomGenZeroAutomataCanvas @JvmOverloads constructor(
                 }
             }
         }else{
-            cameraStart += position
+            cameraStart += max(position, cameraStart + position - rowSize - 1)
         }
         cursorIndex = selectedCellIndex - cameraStart
         invalidate()

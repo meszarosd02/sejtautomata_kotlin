@@ -85,13 +85,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=""/>
+                    android:text="\u219E"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/left"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=""/>
+                    android:text="\u2190"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/toggle"
                     android:layout_width="0dp"
@@ -103,13 +103,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=""/>
+                    android:text="\u2192"/>
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/long_right"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text=""/>
+                    android:text="\u21A0"/>
             </LinearLayout>
         </LinearLayout>
         </ScrollView>
