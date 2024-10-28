@@ -44,6 +44,10 @@ class SetGenZeroDialogFragment: DialogFragment() {
 
         val parentFragmentCanvas = (parentFragment as CellGridFragmentCanvas)
 
+        binding.cancelButton.setOnClickListener {
+            (dialog as AlertDialog).dismiss()
+        }
+
         var n: Int = 0
         binding.nthCell.doOnTextChanged { text, _, _, _ ->
             n = try {

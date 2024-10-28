@@ -5,7 +5,6 @@
     <data>
 
     </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,49 +13,105 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-            <com.example.sejtautomata_kotlin.onedimensional.AutomataCanvas
-                android:id="@+id/automata"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <com.example.sejtautomata_kotlin.onedimensional.AutomataCanvas
+            android:id="@+id/automata"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="11"
+            />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="9"
-                />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10">
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="7">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/generation_count"
-                    android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="10">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="Generation count"/>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/add_generation_button"
-                android:layout_width="wrap_content"
+                    android:layout_weight="7">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/generation_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="Generation count"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/add_generation_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add generation"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add generation"/>
+                android:layout_marginTop="12dp">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/modify"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modify automaton"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/set_gen_zero"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set generation zero"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.example.sejtautomata_kotlin.onedimensional.CustomGenZeroAutomataCanvas
+                    android:id="@+id/canvas"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="6">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/long_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/toggle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Toggle"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/long_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text=""/>
+            </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp">
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/modify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Modify automaton"/>
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/set_gen_zero"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Set generation zero"/>
-        </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

@@ -54,12 +54,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:padding="12dp"
+                android:textSize="18sp"
                 android:text="Set"/>
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cancel_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
+                android:padding="12dp"
+                android:textSize="18sp"
                 android:text="Cancel"/>
         </LinearLayout>
 

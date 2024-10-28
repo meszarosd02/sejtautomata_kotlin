@@ -1,8 +1,5 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
-import java.util.Collections
-import kotlin.random.Random
-
 class Generation {
     private var size: Int
     private var cells: ArrayList<Cell> = ArrayList()

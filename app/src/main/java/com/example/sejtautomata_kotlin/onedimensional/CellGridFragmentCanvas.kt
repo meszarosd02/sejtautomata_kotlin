@@ -12,7 +12,7 @@ class CellGridFragmentCanvas: Fragment() {
     val binding get() = _binding!!
 
     var rowSize = 20
-    var ruleSet = 1
+    var ruleSet = 30
 
     private val allGenerations = AllGenerations(rowSize, ruleSet)
 
@@ -35,6 +35,20 @@ class CellGridFragmentCanvas: Fragment() {
             binding.toolbar.title = "Rule: ${this.getRuleSet()}; Size: ${this.getSize()}"
         }
 
+        binding.canvas.let{
+            it.setOnCellsChanged {
+                binding.automata.apply{
+                    allGenerations = AllGenerations(rowSize, ruleSet).apply{
+                        addGeneration(Generation(rowSize, ruleSet, it.getCells()))
+                    }
+                    invalidate()
+                }
+            }
+        }
+
+        binding.canvas.rowSize = allGenerations.getSize()
+        binding.canvas.regenCells()
+
         binding.addGenerationButton.setOnClickListener {
             generateGenerations()
         }
@@ -46,11 +60,33 @@ class CellGridFragmentCanvas: Fragment() {
         binding.setGenZero.setOnClickListener {
             SetGenZeroDialogFragment().show(childFragmentManager, "SetGenZeroDialogFragment")
         }
+        binding.longLeft.setOnClickListener {
+            binding.canvas.moveCursorIndex(-5)
+
+        }
+
+        binding.left.setOnClickListener {
+            binding.canvas.moveCursorIndex(-1)
+
+        }
+
+        binding.right.setOnClickListener {
+            binding.canvas.moveCursorIndex(1)
+        }
+
+        binding.longRight.setOnClickListener {
+            binding.canvas.moveCursorIndex(5)
+        }
+
+        binding.toggle.setOnClickListener {
+            binding.canvas.toggleCell()
+        }
     }
 
     fun newRandomGenerationZero() {
         binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
             randomGenerationZero()
+            binding.canvas.setCells(this.getAllCells())
         }
         refreshCanvas()
     }
@@ -58,6 +94,7 @@ class CellGridFragmentCanvas: Fragment() {
     fun newLastCellGenerationZero() {
         binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
             lastCellGenerationZero()
+            binding.canvas.setCells(this.getAllCells())
         }
         refreshCanvas()
     }
@@ -65,12 +102,14 @@ class CellGridFragmentCanvas: Fragment() {
     fun newNthCellGenerationZero(n: Int){
         binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
             nthCellGenerationZero(n)
+            binding.canvas.setCells(this.getAllCells())
         }
         refreshCanvas()
     }
     fun newCenterCellGenerationZero(){
         binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
             centerCellGenerationZero()
+            binding.canvas.setCells(this.getAllCells())
         }
     }
 
