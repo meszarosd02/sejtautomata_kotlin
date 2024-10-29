@@ -5,14 +5,37 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.sejtautomata_kotlin.onedimensional.HomeFragment"
+        android:name="com.example.sejtautomata_kotlin.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_cellGridFragmentCanvas"
+            android:id="@+id/action_homeFragment_to_onedHomeFragment"
+            app:destination="@id/onedHomeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_twodHomeFragment"
+            app:destination="@id/twodHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onedHomeFragment"
+        android:name="com.example.sejtautomata_kotlin.onedimensional.OnedHomeFragment"
+        android:label="OnedHomeFragment" >
+        <action
+            android:id="@+id/action_onedHomeFragment_to_cellGridFragmentCanvas"
             app:destination="@id/cellGridFragmentCanvas" />
+    </fragment>
+    <fragment
+        android:id="@+id/twodHomeFragment"
+        android:name="com.example.sejtautomata_kotlin.twodimensional.TwodHomeFragment"
+        android:label="TwodHomeFragment" >
+        <action
+            android:id="@+id/action_twodHomeFragment_to_twodCellGridFragmentCanvas"
+            app:destination="@id/twodCellGridFragmentCanvas" />
     </fragment>
     <fragment
         android:id="@+id/cellGridFragmentCanvas"
         android:name="com.example.sejtautomata_kotlin.onedimensional.CellGridFragmentCanvas"
         android:label="CellGridFragmentCanvas" />
+    <fragment
+        android:id="@+id/twodCellGridFragmentCanvas"
+        android:name="com.example.sejtautomata_kotlin.twodimensional.TwodCellGridFragmentCanvas"
+        android:label="TwodCellGridFragmentCanvas" />
 </navigation>

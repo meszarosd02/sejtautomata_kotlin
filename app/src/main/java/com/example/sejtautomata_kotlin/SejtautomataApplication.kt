@@ -2,6 +2,7 @@ package com.example.sejtautomata_kotlin
 
 import android.app.Application
 import androidx.navigation.NavController
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.lang.ref.WeakReference
 

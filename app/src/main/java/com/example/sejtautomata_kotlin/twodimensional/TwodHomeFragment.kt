@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.sejtautomata_kotlin.databinding.TwodHomeFragmentBinding
 
-class HomeFragment: Fragment() {
+class TwodHomeFragment: Fragment() {
     private var _binding: TwodHomeFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -23,6 +24,9 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        binding.startButton.setOnClickListener {
+            val action = TwodHomeFragmentDirections.actionTwodHomeFragmentToTwodCellGridFragmentCanvas()
+            findNavController().navigate(action)
+        }
     }
 }

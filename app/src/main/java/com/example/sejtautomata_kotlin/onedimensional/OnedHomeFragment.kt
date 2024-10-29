@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.sejtautomata_kotlin.databinding.OnedHomeFragmentBinding
 
-class HomeFragment: Fragment() {
+class OnedHomeFragment: Fragment() {
     private var _binding: OnedHomeFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -25,7 +25,9 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.startButton.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToCellGridFragmentCanvas())
+            val action = OnedHomeFragmentDirections.actionOnedHomeFragmentToCellGridFragmentCanvas()
+            findNavController().navigate(action)
         }
+
     }
 }

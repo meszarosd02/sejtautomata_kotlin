@@ -1,23 +1,23 @@
-package com.example.sejtautomata_kotlin.onedimensional
+package com.example.sejtautomata_kotlin.twodimensional
 
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.icu.number.Scale
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintSet.Motion
 import kotlin.math.max
 import kotlin.math.min
 
-class AutomataCanvas @JvmOverloads constructor(
+class TwodAutomataCanvas @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
-): View(context, attrs) {
+) : View(context, attrs){
+    var generation: Generation? = null
+
     var defaultCellSize = 20
     var currentCellSize = defaultCellSize
 
@@ -28,13 +28,10 @@ class AutomataCanvas @JvmOverloads constructor(
 
     private val paint = Paint()
 
-    var allGenerations: AllGenerations? = null
-
     private val scaleDetector: ScaleGestureDetector =
         ScaleGestureDetector(context, object: ScaleGestureDetector.SimpleOnScaleGestureListener(){
             override fun onScale(detector: ScaleGestureDetector): Boolean {
                 detector.let {
-
                     currentCellSize = max(10, min((defaultCellSize.toFloat() * it.scaleFactor).toInt(), 70))
                     invalidate()
                 }
@@ -49,20 +46,18 @@ class AutomataCanvas @JvmOverloads constructor(
         })
 
     override fun onDraw(canvas: Canvas) {
-        parent.requestDisallowInterceptTouchEvent(true)
         super.onDraw(canvas)
-        allGenerations?.let {
-            for (y in 0..<it.getGenerations().size) {
-                for (x in 0..<it.getGenerations()[y].getCells().size) {
-                    paint.color =
-                        if (it.getGenerations()[y][x].isActive) Color.BLACK else Color.WHITE
+
+        generation?.let{
+            for(y in 0..<it.getRowCount()){
+                for(x in 0..<it.getColCount()){
+                    paint.color = if(it.getCell(x, y).isActive) Color.BLACK else Color.WHITE
                     canvas.drawRect(
-                        (x * currentCellSize.toFloat()) + (deltaX),
-                        (y * currentCellSize.toFloat()) + (deltaY),
+                        (x * currentCellSize.toFloat()) + deltaX,
+                        (y * currentCellSize.toFloat()) + deltaY,
                         (x + 1) * currentCellSize.toFloat() + deltaX,
                         (y + 1) * currentCellSize.toFloat() + deltaY,
-                        paint
-                    )
+                        paint)
                 }
             }
         }
