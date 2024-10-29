@@ -1,7 +1,5 @@
 package com.example.sejtautomata_kotlin.twodimensional
 
-import com.example.sejtautomata_kotlin.onedimensional.Cell
-
 class Generation {
     private var rows: Int = 0
     private var cols: Int = 0
