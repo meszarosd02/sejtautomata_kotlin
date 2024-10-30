@@ -12,10 +12,10 @@ class TwodCellGridFragmentCanvas: Fragment() {
     private var _binding: TwodCellgridFragmentCanvasBinding? = null
     private val binding get() = _binding!!
 
-    private var rows = 20
-    private var cols = 20
+    private var rows = 6
+    private var cols = 6
 
-    private var generation = Generation(rows, cols)
+    private var allGenerations: AllGenerations = AllGenerations(rows, cols)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,15 +23,25 @@ class TwodCellGridFragmentCanvas: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = TwodCellgridFragmentCanvasBinding.inflate(inflater, container, false)
+        allGenerations.addRule(Rule(Rule.COMPARISON.LESS, 2, Rule.STARTSTATE.ACTIVE, false))
+        allGenerations.addRule(Rule(Rule.COMPARISON.EQUAL, 2, Rule.STARTSTATE.ACTIVE, true))
+        allGenerations.addRule(Rule(Rule.COMPARISON.EQUAL, 3, Rule.STARTSTATE.ANY, true))
+        allGenerations.addRule(Rule(Rule.COMPARISON.GREATER, 3, Rule.STARTSTATE.ACTIVE, false))
+        allGenerations.addGeneration(Generation(rows, cols))
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.canvas.generation = generation
-        binding.canvas.invalidate()
+        binding.canvas.setGeneration(allGenerations)
 
-        Log.i("asd", if(binding.canvas.generation!!.getCell(0, 0).isActive) "1" else "0")
+        binding.neighbors.setOnClickListener {
+
+        }
+
+        binding.nextGen.setOnClickListener {
+            binding.canvas.generateNextGeneration()
+        }
     }
 }

@@ -15,7 +15,7 @@ class TwodAutomataCanvas @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : View(context, attrs){
-    var generation: Generation? = null
+    private var allGeneration: AllGenerations? = null
 
     var defaultCellSize = 20
     var currentCellSize = defaultCellSize
@@ -26,6 +26,8 @@ class TwodAutomataCanvas @JvmOverloads constructor(
     private var deltaY = 0
 
     private val paint = Paint()
+
+    private var isEditing = false
 
     private val scaleDetector: ScaleGestureDetector =
         ScaleGestureDetector(context, object: ScaleGestureDetector.SimpleOnScaleGestureListener(){
@@ -47,7 +49,7 @@ class TwodAutomataCanvas @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        generation?.let{
+        allGeneration?.getLastGeneration()?.let{
             for(y in 0..<it.getRowCount()){
                 for(x in 0..<it.getColCount()){
                     paint.color = if(it.getCell(x, y).isActive) Color.BLACK else Color.WHITE
@@ -76,5 +78,22 @@ class TwodAutomataCanvas @JvmOverloads constructor(
         }
         invalidate()
         return true
+    }
+
+    fun getAllGeneration(): AllGenerations?{
+        if(this.allGeneration == null){
+            return null
+        }
+        return this.allGeneration!!
+    }
+
+    fun setGeneration(allGeneration: AllGenerations){
+        this.allGeneration = allGeneration
+        invalidate()
+    }
+
+    fun generateNextGeneration(){
+        this.allGeneration?.generateNextGeneration()
+        invalidate()
     }
 }
