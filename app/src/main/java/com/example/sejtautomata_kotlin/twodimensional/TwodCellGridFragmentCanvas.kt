@@ -12,8 +12,8 @@ class TwodCellGridFragmentCanvas: Fragment() {
     private var _binding: TwodCellgridFragmentCanvasBinding? = null
     private val binding get() = _binding!!
 
-    private var rows = 6
-    private var cols = 6
+    private var rows = 20
+    private var cols = 20
 
     private var allGenerations: AllGenerations = AllGenerations(rows, cols)
 
@@ -42,6 +42,34 @@ class TwodCellGridFragmentCanvas: Fragment() {
 
         binding.nextGen.setOnClickListener {
             binding.canvas.generateNextGeneration()
+        }
+
+        binding.toggleModify.setOnClickListener {
+            binding.canvas.toggleIsEditing()
+            binding.navigation.visibility = when(binding.canvas.isEditing){
+                true -> View.VISIBLE
+                false -> View.GONE
+            }
+        }
+
+        binding.left.setOnClickListener {
+            binding.canvas.moveCursorLeft()
+        }
+
+        binding.right.setOnClickListener {
+            binding.canvas.moveCursorRight()
+        }
+
+        binding.up.setOnClickListener {
+            binding.canvas.moveCursorUp()
+        }
+
+        binding.down.setOnClickListener {
+            binding.canvas.moveCursorDown()
+        }
+
+        binding.toggle.setOnClickListener {
+            binding.canvas.toggleCursorCell()
         }
     }
 }

@@ -24,7 +24,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:orientation="horizontal">
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/neighbors"
@@ -36,6 +36,50 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="next gen"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/toggle_modify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="toggle modify"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5"
+            android:visibility="gone"
+            android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="\u2190"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/up"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="\u2191"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/toggle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="\u29bf"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/down"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="\u2193"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/right"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="\u2192"/>
         </LinearLayout>
 
     </LinearLayout>

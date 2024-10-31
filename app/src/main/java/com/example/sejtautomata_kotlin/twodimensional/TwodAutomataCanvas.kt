@@ -25,9 +25,12 @@ class TwodAutomataCanvas @JvmOverloads constructor(
     private var deltaX = 0
     private var deltaY = 0
 
+    private var editingX = 0
+    private var editingY = 0
+
     private val paint = Paint()
 
-    private var isEditing = false
+    var isEditing = false
 
     private val scaleDetector: ScaleGestureDetector =
         ScaleGestureDetector(context, object: ScaleGestureDetector.SimpleOnScaleGestureListener(){
@@ -48,7 +51,7 @@ class TwodAutomataCanvas @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
+        paint.reset()
         allGeneration?.getLastGeneration()?.let{
             for(y in 0..<it.getRowCount()){
                 for(x in 0..<it.getColCount()){
@@ -61,6 +64,17 @@ class TwodAutomataCanvas @JvmOverloads constructor(
                         paint)
                 }
             }
+        }
+        if(isEditing){
+            paint.color = Color.BLUE
+            paint.style = Paint.Style.STROKE
+            paint.strokeWidth = 5f
+            canvas.drawRect(
+                (editingX * currentCellSize.toFloat()) + deltaX,
+                (editingY * currentCellSize.toFloat()) + deltaY,
+                (editingX + 1) * currentCellSize.toFloat() + deltaX,
+                (editingY + 1) * currentCellSize.toFloat() + deltaY,
+            paint)
         }
     }
 
@@ -94,6 +108,43 @@ class TwodAutomataCanvas @JvmOverloads constructor(
 
     fun generateNextGeneration(){
         this.allGeneration?.generateNextGeneration()
+        invalidate()
+    }
+
+    fun toggleIsEditing(){
+        this.isEditing = !this.isEditing
+        invalidate()
+    }
+
+    fun moveCursorLeft(){
+        if(!this.isEditing)
+            return
+        this.editingX = max(0, this.editingX - 1)
+        invalidate()
+    }
+    fun moveCursorRight(){
+        if(!this.isEditing)
+            return
+        this.editingX = min(this.allGeneration!!.getRows(), this.editingX + 1)
+        invalidate()
+    }
+    fun moveCursorUp(){
+        if(!this.isEditing)
+            return
+        this.editingY = max(0, this.editingY - 1)
+        invalidate()
+    }
+    fun moveCursorDown(){
+        if(!this.isEditing)
+            return
+        this.editingY = min(this.allGeneration!!.getCols(), this.editingY + 1)
+        invalidate()
+    }
+
+    fun toggleCursorCell(){
+        if(!this.isEditing)
+            return
+        this.allGeneration!!.toggleCell(editingX, editingY)
         invalidate()
     }
 }

@@ -16,9 +16,9 @@ class Generation {
                 cells[x].add(Cell(false))
             }
         }
-        cells[1][1].toggle()
+        /*cells[1][1].toggle()
         cells[1][2].toggle()
-        cells[1][3].toggle()
+        cells[1][3].toggle()*/
     }
 
     fun getCellNeighbors(x: Int, y: Int): Int{
@@ -40,6 +40,10 @@ class Generation {
 
     fun getCell(x: Int, y: Int): Cell{
         return this.cells[x][y]
+    }
+
+    fun setCell(x: Int, y: Int, cell: Cell){
+        this.cells[x][y] = cell
     }
 
     fun getRowCount(): Int{

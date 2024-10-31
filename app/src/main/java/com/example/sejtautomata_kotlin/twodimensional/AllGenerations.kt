@@ -21,7 +21,15 @@ class AllGenerations {
         return generations.last()
     }
 
-    private fun parseStartState(cell: Cell, rule: Rule): Boolean{
+    fun setCell(cell: Cell, x: Int, y: Int){
+        generations.last().setCell(x, y, cell)
+    }
+
+    fun toggleCell(x: Int, y: Int){
+        generations.last().setCell(x, y, Cell(!generations.last().getCell(x, y).isActive))
+    }
+
+    private fun checkStartState(cell: Cell, rule: Rule): Boolean{
         return when(rule.start){
             Rule.STARTSTATE.ANY -> {return true}
             Rule.STARTSTATE.ACTIVE -> {return cell.isActive}
@@ -39,7 +47,7 @@ class AllGenerations {
                     when(rule.comp){
                         Rule.COMPARISON.LESS -> {
                             if(lastGeneration.getCellNeighbors(x, y) < rule.num &&
-                                parseStartState(lastGeneration.getCell(x, y), rule)) {
+                                checkStartState(lastGeneration.getCell(x, y), rule)) {
                                 newGeneration[x][y].isActive = rule.result
                                 break@rules
                             }
@@ -48,7 +56,7 @@ class AllGenerations {
                         }
                         Rule.COMPARISON.LESS_EQUAL -> {
                             if(lastGeneration.getCellNeighbors(x, y) <= rule.num &&
-                                parseStartState(lastGeneration.getCell(x, y), rule)) {
+                                checkStartState(lastGeneration.getCell(x, y), rule)) {
                                 newGeneration[x][y].isActive = rule.result
                                 break@rules
                             }
@@ -57,7 +65,7 @@ class AllGenerations {
                         }
                         Rule.COMPARISON.EQUAL -> {
                             if(lastGeneration.getCellNeighbors(x, y) == rule.num &&
-                                parseStartState(lastGeneration.getCell(x, y), rule)){
+                                checkStartState(lastGeneration.getCell(x, y), rule)){
                                 newGeneration[x][y].isActive = rule.result
                                 break@rules
                             }
@@ -66,7 +74,7 @@ class AllGenerations {
                         }
                         Rule.COMPARISON.GREATER_EQUAL -> {
                             if(lastGeneration.getCellNeighbors(x, y) >= rule.num &&
-                                parseStartState(lastGeneration.getCell(x, y), rule)){
+                                checkStartState(lastGeneration.getCell(x, y), rule)){
                                 newGeneration[x][y].isActive = rule.result
                                 break@rules
                             }
@@ -75,7 +83,7 @@ class AllGenerations {
                         }
                         Rule.COMPARISON.GREATER -> {
                             if(lastGeneration.getCellNeighbors(x, y) > rule.num &&
-                                parseStartState(lastGeneration.getCell(x, y), rule)){
+                                checkStartState(lastGeneration.getCell(x, y), rule)){
                                 newGeneration[x][y].isActive = rule.result
                                 break@rules
                             }
@@ -91,5 +99,13 @@ class AllGenerations {
 
     fun addRule(rule: Rule) {
         this.rules.add(rule)
+    }
+
+    fun getRows(): Int{
+        return this.rows
+    }
+
+    fun getCols(): Int{
+        return this.cols
     }
 }
