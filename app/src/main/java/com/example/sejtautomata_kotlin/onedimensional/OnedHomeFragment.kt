@@ -24,8 +24,18 @@ class OnedHomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startButton.setOnClickListener {
+        binding.canvasButton.setOnClickListener {
             val action = OnedHomeFragmentDirections.actionOnedHomeFragmentToCellGridFragmentCanvas()
+            findNavController().navigate(action)
+        }
+
+        binding.gridviewButton.setOnClickListener {
+            val action = OnedHomeFragmentDirections.actionOnedHomeFragmentToCellgridFragmentGridView()
+            findNavController().navigate(action)
+        }
+
+        binding.recyclerviewButton.setOnClickListener {
+            val action = OnedHomeFragmentDirections.actionOnedHomeFragmentToCellgridFragmentRecyclerView()
             findNavController().navigate(action)
         }
 

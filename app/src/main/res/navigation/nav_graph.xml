@@ -21,6 +21,12 @@
         <action
             android:id="@+id/action_onedHomeFragment_to_cellGridFragmentCanvas"
             app:destination="@id/cellGridFragmentCanvas" />
+        <action
+            android:id="@+id/action_onedHomeFragment_to_cellgridFragmentGridView"
+            app:destination="@id/cellgridFragmentGridView" />
+        <action
+            android:id="@+id/action_onedHomeFragment_to_cellgridFragmentRecyclerView"
+            app:destination="@id/cellgridFragmentRecyclerView" />
     </fragment>
     <fragment
         android:id="@+id/twodHomeFragment"
@@ -38,4 +44,12 @@
         android:id="@+id/twodCellGridFragmentCanvas"
         android:name="com.example.sejtautomata_kotlin.twodimensional.TwodCellGridFragmentCanvas"
         android:label="TwodCellGridFragmentCanvas" />
+    <fragment
+        android:id="@+id/cellgridFragmentGridView"
+        android:name="com.example.sejtautomata_kotlin.onedimensional.CellgridFragmentGridView"
+        android:label="CellgridFragmentGridView" />
+    <fragment
+        android:id="@+id/cellgridFragmentRecyclerView"
+        android:name="com.example.sejtautomata_kotlin.onedimensional.CellgridFragmentRecyclerView"
+        android:label="CellgridFragmentRecyclerView" />
 </navigation>

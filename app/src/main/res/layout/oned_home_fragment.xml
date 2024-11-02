@@ -11,10 +11,22 @@
         android:orientation="vertical"
         android:layout_margin="12dp">
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/start_button"
+            android:id="@+id/gridview_button"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:text="start"/>
+            android:text="GridView"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/recyclerview_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="RecyclerView"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/canvas_button"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="Canvas"/>
     </LinearLayout>
 </layout>
