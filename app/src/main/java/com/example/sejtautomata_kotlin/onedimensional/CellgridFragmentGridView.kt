@@ -12,7 +12,9 @@ class CellgridFragmentGridView: Fragment() {
     private var _binding: OnedCellgridFragmentGridviewBinding? = null
     private val binding get() = _binding!!
 
-    private var allGeneration = AllGenerations(51, 110)
+    private var allGeneration = CellularAutomata(50, 110)
+
+    private var allCells: ArrayList<Cell> = ArrayList()
 
     private var adapter: CellGridAdapterGridView? = null
 
@@ -21,8 +23,9 @@ class CellgridFragmentGridView: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        allGeneration.addEmptyGeneration()
-        adapter = CellGridAdapterGridView(requireContext(), R.layout.oned_cell_item, allGeneration.getAllCells(), allGeneration.getSize())
+        allGeneration.randomGenerationZero()
+        allCells = allGeneration.getAllCells()
+        adapter = CellGridAdapterGridView(requireContext(), R.layout.oned_cell_item, allCells, allGeneration.getSize())
         _binding = OnedCellgridFragmentGridviewBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -50,5 +53,8 @@ class CellgridFragmentGridView: Fragment() {
                 allGeneration.generateNextGeneration()
             }
         }
+        allCells = allGeneration.getAllCells()
+        adapter = CellGridAdapterGridView(requireContext(), R.layout.oned_cell_item, allCells, allGeneration.getSize())
+        binding.cellGrid.adapter = adapter
     }
 }

@@ -12,7 +12,7 @@ class CellgridFragmentRecyclerView: Fragment() {
     private var _binding: OnedCellgridFragmentRecyclerviewBinding? = null
     private val binding get() = _binding!!
 
-    private var allGeneration = AllGenerations(50, 110)
+    private var allGeneration = CellularAutomata(50, 110)
 
     private var adapter: CellGridAdapterRecyclerView? = null
 
@@ -23,7 +23,7 @@ class CellgridFragmentRecyclerView: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        allGeneration.addEmptyGeneration()
+        allGeneration.randomGenerationZero()
         _binding = OnedCellgridFragmentRecyclerviewBinding.inflate(inflater, container, false)
         return binding.root
     }

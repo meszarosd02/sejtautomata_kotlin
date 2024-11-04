@@ -4,13 +4,10 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.icu.number.Scale
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintSet.Motion
 import kotlin.math.max
 import kotlin.math.min
 
@@ -28,7 +25,7 @@ class AutomataCanvas @JvmOverloads constructor(
 
     private val paint = Paint()
 
-    var allGenerations: AllGenerations? = null
+    var cellularAutomata: CellularAutomata? = null
 
     private val scaleDetector: ScaleGestureDetector =
         ScaleGestureDetector(context, object: ScaleGestureDetector.SimpleOnScaleGestureListener(){
@@ -51,7 +48,7 @@ class AutomataCanvas @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         parent.requestDisallowInterceptTouchEvent(true)
         super.onDraw(canvas)
-        allGenerations?.let {
+        cellularAutomata?.let {
             for (y in 0..<it.getGenerations().size) {
                 for (x in 0..<it.getGenerations()[y].getCells().size) {
                     paint.color =

@@ -4,7 +4,7 @@ import android.util.Log
 import java.util.Collections
 import kotlin.random.Random
 
-class AllGenerations {
+class CellularAutomata {
     private var generations: ArrayList<Generation> = ArrayList()
     private var size: Int
     private var ruleSet: Int

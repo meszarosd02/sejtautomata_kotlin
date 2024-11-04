@@ -27,7 +27,7 @@ class CellGridAdapterGridView(
 
         listItemView?.layoutParams = AbsListView.LayoutParams(itemWidth, itemWidth)
         val cell: Cell? = getItem(position)
-        val cellLayout: LinearLayout = listItemView!!.findViewById(R.id.cell)
+        val cellLayout: View = listItemView!!.findViewById(R.id.cell)
         cellLayout.background = when(cell!!.isActive){
             false -> ContextCompat.getDrawable(context, R.drawable.cell_item_off)
             true -> ContextCompat.getDrawable(context, R.drawable.cell_item_on)

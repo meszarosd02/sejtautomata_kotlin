@@ -2,8 +2,6 @@ package com.example.sejtautomata_kotlin.onedimensional
 
 import android.app.Dialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -67,18 +65,18 @@ class ModifyAutomatonDialogFragment: DialogFragment() {
 
         binding.setButton.setOnClickListener {
             newSize = if(newSize == -1){
-                parentFragmentCanvas!!.binding.automata.allGenerations!!.getSize()
+                parentFragmentCanvas!!.binding.automata.cellularAutomata!!.getSize()
             }else{
                 newSize
             }
 
             newRule = if(newRule == -1){
-                parentFragmentCanvas!!.binding.automata.allGenerations!!.getRuleSet()
+                parentFragmentCanvas!!.binding.automata.cellularAutomata!!.getRuleSet()
             }else{
                 newRule
             }
 
-            parentFragmentCanvas!!.binding.automata.allGenerations = AllGenerations(newSize, newRule).apply {
+            parentFragmentCanvas!!.binding.automata.cellularAutomata = CellularAutomata(newSize, newRule).apply {
                 addEmptyGeneration()
             }
             parentFragmentCanvas!!.rowSize = newSize

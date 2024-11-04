@@ -14,7 +14,7 @@ class CellGridFragmentCanvas: Fragment() {
     var rowSize = 20
     var ruleSet = 30
 
-    private val allGenerations = AllGenerations(rowSize, ruleSet)
+    private val cellularAutomata = CellularAutomata(rowSize, ruleSet)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,8 +28,8 @@ class CellGridFragmentCanvas: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.automata.allGenerations = allGenerations
-        binding.automata.allGenerations?.apply {
+        binding.automata.cellularAutomata = cellularAutomata
+        binding.automata.cellularAutomata?.apply {
             addEmptyGeneration()
             refreshCanvas()
             binding.toolbar.title = "Rule: ${this.getRuleSet()}; Size: ${this.getSize()}"
@@ -38,7 +38,7 @@ class CellGridFragmentCanvas: Fragment() {
         binding.canvas.let{
             it.setOnCellsChanged {
                 binding.automata.apply{
-                    allGenerations = AllGenerations(rowSize, ruleSet).apply{
+                    cellularAutomata = CellularAutomata(rowSize, ruleSet).apply{
                         addGeneration(Generation(rowSize, ruleSet, it.getCells()))
                     }
                     invalidate()
@@ -46,7 +46,7 @@ class CellGridFragmentCanvas: Fragment() {
             }
         }
 
-        binding.canvas.rowSize = allGenerations.getSize()
+        binding.canvas.rowSize = cellularAutomata.getSize()
         binding.canvas.regenCells()
 
         binding.addGenerationButton.setOnClickListener {
@@ -84,7 +84,7 @@ class CellGridFragmentCanvas: Fragment() {
     }
 
     fun newRandomGenerationZero() {
-        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+        binding.automata.cellularAutomata = CellularAutomata(rowSize, ruleSet).apply{
             randomGenerationZero()
             binding.canvas.setCells(this.getAllCells())
         }
@@ -92,7 +92,7 @@ class CellGridFragmentCanvas: Fragment() {
     }
 
     fun newLastCellGenerationZero() {
-        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+        binding.automata.cellularAutomata = CellularAutomata(rowSize, ruleSet).apply{
             lastCellGenerationZero()
             binding.canvas.setCells(this.getAllCells())
         }
@@ -100,14 +100,14 @@ class CellGridFragmentCanvas: Fragment() {
     }
 
     fun newNthCellGenerationZero(n: Int){
-        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+        binding.automata.cellularAutomata = CellularAutomata(rowSize, ruleSet).apply{
             nthCellGenerationZero(n)
             binding.canvas.setCells(this.getAllCells())
         }
         refreshCanvas()
     }
     fun newCenterCellGenerationZero(){
-        binding.automata.allGenerations = AllGenerations(rowSize, ruleSet).apply{
+        binding.automata.cellularAutomata = CellularAutomata(rowSize, ruleSet).apply{
             centerCellGenerationZero()
             binding.canvas.setCells(this.getAllCells())
         }
@@ -121,7 +121,7 @@ class CellGridFragmentCanvas: Fragment() {
         }
         if(count > 0) {
             for (i in 0..<count) {
-                binding.automata.allGenerations?.generateNextGeneration()
+                binding.automata.cellularAutomata?.generateNextGeneration()
             }
         }
         refreshCanvas()
