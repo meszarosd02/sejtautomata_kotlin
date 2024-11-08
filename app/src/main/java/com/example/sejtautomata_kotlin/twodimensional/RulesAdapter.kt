@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sejtautomata_kotlin.databinding.RuleItemBinding
 
-class RulesAdapter(private var rules: ArrayList<Rule>): RecyclerView.Adapter<RulesAdapter.ViewHolder>() {
+class RulesAdapter(private var rules: ArrayList<Rule>, private var onRuleClicked: (Rule) -> Unit): RecyclerView.Adapter<RulesAdapter.ViewHolder>() {
     class ViewHolder(private var binding: RuleItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(r: Rule){
             binding.neighborType.text = "Neighbors"
@@ -29,5 +29,9 @@ class RulesAdapter(private var rules: ArrayList<Rule>): RecyclerView.Adapter<Rul
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = rules[position]
         holder.bind(current)
+        holder.itemView.setOnClickListener {
+            onRuleClicked(current)
+        }
     }
+
 }

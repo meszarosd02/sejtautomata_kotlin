@@ -6,7 +6,7 @@ class CellularAutomata {
     private val generations: ArrayList<Generation> = ArrayList()
     private var rows: Int = 0
     private var cols: Int = 0
-    val rules: ArrayList<Rule> = ArrayList()
+    var rules: ArrayList<Rule> = ArrayList()
 
     constructor(rows: Int, cols: Int){
         this.rows = rows

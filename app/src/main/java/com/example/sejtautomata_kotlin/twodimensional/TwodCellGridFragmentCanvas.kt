@@ -23,10 +23,10 @@ class TwodCellGridFragmentCanvas: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = TwodCellgridFragmentCanvasBinding.inflate(inflater, container, false)
-        allGenerations.addRule(Rule(Rule.COMPARISON.LESS, 2, Rule.STARTSTATE.ACTIVE, false))
+        /*allGenerations.addRule(Rule(Rule.COMPARISON.LESS, 2, Rule.STARTSTATE.ACTIVE, false))
         allGenerations.addRule(Rule(Rule.COMPARISON.EQUAL, 2, Rule.STARTSTATE.ACTIVE, true))
         allGenerations.addRule(Rule(Rule.COMPARISON.EQUAL, 3, Rule.STARTSTATE.ANY, true))
-        allGenerations.addRule(Rule(Rule.COMPARISON.GREATER, 3, Rule.STARTSTATE.ACTIVE, false))
+        allGenerations.addRule(Rule(Rule.COMPARISON.GREATER, 3, Rule.STARTSTATE.ACTIVE, false))*/
         allGenerations.addGeneration(Generation(rows, cols))
         return binding.root
     }
@@ -50,6 +50,10 @@ class TwodCellGridFragmentCanvas: Fragment() {
                 true -> View.VISIBLE
                 false -> View.GONE
             }
+        }
+
+        binding.resetBoard.setOnClickListener {
+            binding.canvas.setGeneration(CellularAutomata(rows, cols))
         }
 
         binding.left.setOnClickListener {

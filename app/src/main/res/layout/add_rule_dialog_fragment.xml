@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="Neighbor count"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Condition type"/>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_condition"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rule_input_h"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_bg"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comparison"/>
+        </LinearLayout>
+        <EditText
+            android:id="@+id/input_number"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rule_input_h"
+            android:layout_marginBottom="12dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:inputType="number"
+            android:background="@drawable/rounded_bg"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Required state of cell"/>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_cell_state"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rule_input_h"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_bg" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cell result"/>
+        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_result"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/rule_input_h"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_bg" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/set_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="Set"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:text="Cancel"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
