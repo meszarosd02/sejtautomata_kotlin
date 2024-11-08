@@ -1,11 +1,13 @@
 package com.example.sejtautomata_kotlin.onedimensional
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.sejtautomata_kotlin.databinding.OnedCellgridFragmentCanvasBinding
+import kotlin.time.measureTime
 
 class CellGridFragmentCanvas: Fragment() {
     private var _binding: OnedCellgridFragmentCanvasBinding? = null
@@ -121,7 +123,7 @@ class CellGridFragmentCanvas: Fragment() {
         }
         if(count > 0) {
             for (i in 0..<count) {
-                binding.automata.cellularAutomata?.generateNextGeneration()
+                binding.automata.cellularAutomata?.generateNextGenerationTwo()
             }
         }
         refreshCanvas()

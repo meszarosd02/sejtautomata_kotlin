@@ -22,6 +22,24 @@ class CellularAutomata {
         return generations.last()
     }
 
+    fun generateNextGenerationTwo(){
+        val ruleMap: Map<String, Int> = (0..7).associate { i ->
+            val pattern = String.format("%3s", Integer.toBinaryString(i)).replace(" ", "0")
+            val result = (this.ruleSet shr i) and 1
+            pattern to result
+        }
+        val newGeneration = Generation(this.size, this.ruleSet)
+        for(i in 0..<this.size){
+            val left = if(getLastGeneration()[(i+this.size-1)%this.size].isActive) 1 else 0
+            val center = if(getLastGeneration()[(i+this.size)%this.size].isActive) 1 else 0
+            val right = if(getLastGeneration()[(i+this.size+1)%this.size].isActive) 1 else 0
+            val pattern = "$left$center$right"
+            val result = ruleMap[pattern]
+            newGeneration[i].isActive = result == 1
+        }
+        addGeneration(newGeneration)
+    }
+
     fun generateNextGeneration(){
         val newGeneration = Generation(this.size, this.ruleSet)
         val ruleSetBinary = ruleSetIntToBinary()

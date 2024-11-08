@@ -103,42 +103,9 @@ class CustomGenZeroAutomataCanvas @JvmOverloads constructor(
             cameraStart = min(selectedCellIndex - centerInsideWindow, rowSize - cellWindow)
         }
         if((!isStart && !isEnd) || selectedCellIndex == centerInsideWindow) {
-            cameraStart = min(max(selectedCellIndex - centerInsideWindow, 0), rowSize - cellWindow)
             cursorIndex = min(centerInsideWindow, selectedCellIndex)
+            cameraStart = min(max(selectedCellIndex - centerInsideWindow, 0), rowSize - cellWindow)
         }
-        invalidate()
-    }
-
-    fun moveCursorIndex1(position: Int){
-        val centerInsideWindow = cellWindow / 2
-        if(selectedCellIndex + position >= rowSize){
-            return
-        }
-        selectedCellIndex += position
-        val isStart = cameraStart == 0
-        val isEnd = (cameraStart + cellWindow) == rowSize
-        if(cameraStart + position > cameraStart + centerInsideWindow){
-            cameraStart += (position - centerInsideWindow)
-            cursorIndex = selectedCellIndex - cameraStart
-            invalidate()
-            return
-        }
-        if(isStart || isEnd){
-            if(isStart){
-                if(selectedCellIndex > cameraStart + centerInsideWindow + 1){
-                    cameraStart += position
-                }else if(selectedCellIndex > cameraStart + centerInsideWindow){
-                    cameraStart += (selectedCellIndex - centerInsideWindow)
-                }
-            }else if(isEnd){
-                if(selectedCellIndex + position < cameraStart + centerInsideWindow - 1){
-                    cameraStart += position
-                }
-            }
-        }else{
-            cameraStart += max(position, cameraStart + position - rowSize - 1)
-        }
-        cursorIndex = selectedCellIndex - cameraStart
         invalidate()
     }
 

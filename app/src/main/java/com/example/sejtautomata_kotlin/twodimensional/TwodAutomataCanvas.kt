@@ -15,7 +15,7 @@ class TwodAutomataCanvas @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null
 ) : View(context, attrs){
-    private var allGeneration: AllGenerations? = null
+    private var allGeneration: CellularAutomata? = null
 
     var defaultCellSize = 20
     var currentCellSize = defaultCellSize
@@ -94,14 +94,14 @@ class TwodAutomataCanvas @JvmOverloads constructor(
         return true
     }
 
-    fun getAllGeneration(): AllGenerations?{
+    fun getAllGeneration(): CellularAutomata?{
         if(this.allGeneration == null){
             return null
         }
         return this.allGeneration!!
     }
 
-    fun setGeneration(allGeneration: AllGenerations){
+    fun setGeneration(allGeneration: CellularAutomata){
         this.allGeneration = allGeneration
         invalidate()
     }

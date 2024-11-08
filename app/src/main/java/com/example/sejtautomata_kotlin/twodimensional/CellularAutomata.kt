@@ -2,11 +2,11 @@ package com.example.sejtautomata_kotlin.twodimensional
 
 import android.util.Log
 
-class AllGenerations {
+class CellularAutomata {
     private val generations: ArrayList<Generation> = ArrayList()
     private var rows: Int = 0
     private var cols: Int = 0
-    private val rules: ArrayList<Rule> = ArrayList()
+    val rules: ArrayList<Rule> = ArrayList()
 
     constructor(rows: Int, cols: Int){
         this.rows = rows

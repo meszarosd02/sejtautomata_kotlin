@@ -31,7 +31,6 @@ class AutomataCanvas @JvmOverloads constructor(
         ScaleGestureDetector(context, object: ScaleGestureDetector.SimpleOnScaleGestureListener(){
             override fun onScale(detector: ScaleGestureDetector): Boolean {
                 detector.let {
-
                     currentCellSize = max(10, min((defaultCellSize.toFloat() * it.scaleFactor).toInt(), 70))
                     invalidate()
                 }
@@ -40,7 +39,6 @@ class AutomataCanvas @JvmOverloads constructor(
 
             override fun onScaleEnd(detector: ScaleGestureDetector) {
                 super.onScaleEnd(detector)
-
                 defaultCellSize = currentCellSize
             }
         })
@@ -54,8 +52,8 @@ class AutomataCanvas @JvmOverloads constructor(
                     paint.color =
                         if (it.getGenerations()[y][x].isActive) Color.BLACK else Color.WHITE
                     canvas.drawRect(
-                        (x * currentCellSize.toFloat()) + (deltaX),
-                        (y * currentCellSize.toFloat()) + (deltaY),
+                        (x * currentCellSize.toFloat()) + deltaX,
+                        (y * currentCellSize.toFloat()) + deltaY,
                         (x + 1) * currentCellSize.toFloat() + deltaX,
                         (y + 1) * currentCellSize.toFloat() + deltaY,
                         paint

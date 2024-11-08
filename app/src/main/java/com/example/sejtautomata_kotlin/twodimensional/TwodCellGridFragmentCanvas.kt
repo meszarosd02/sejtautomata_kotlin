@@ -1,12 +1,12 @@
 package com.example.sejtautomata_kotlin.twodimensional
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.sejtautomata_kotlin.databinding.TwodCellgridFragmentCanvasBinding
+import com.example.sejtautomata_kotlin.onedimensional.ModifyAutomatonDialogFragment
 
 class TwodCellGridFragmentCanvas: Fragment() {
     private var _binding: TwodCellgridFragmentCanvasBinding? = null
@@ -15,7 +15,7 @@ class TwodCellGridFragmentCanvas: Fragment() {
     private var rows = 20
     private var cols = 20
 
-    private var allGenerations: AllGenerations = AllGenerations(rows, cols)
+    var allGenerations: CellularAutomata = CellularAutomata(rows, cols)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +36,8 @@ class TwodCellGridFragmentCanvas: Fragment() {
 
         binding.canvas.setGeneration(allGenerations)
 
-        binding.neighbors.setOnClickListener {
-
+        binding.rules.setOnClickListener {
+            RulesBottomSheetDialog().show(childFragmentManager, "RulesBottomSheetDialog")
         }
 
         binding.nextGen.setOnClickListener {
