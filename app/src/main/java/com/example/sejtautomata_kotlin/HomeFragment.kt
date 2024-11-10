@@ -25,11 +25,11 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.oneDimension.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToOnedHomeFragment()
+            val action = HomeFragmentDirections.actionHomeFragmentToCellGridFragmentCanvas()
             findNavController().navigate(action)
         }
         binding.twoDimension.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToTwodHomeFragment()
+            val action = HomeFragmentDirections.actionHomeFragmentToTwodCellGridFragmentCanvas()
             findNavController().navigate(action)
         }
     }

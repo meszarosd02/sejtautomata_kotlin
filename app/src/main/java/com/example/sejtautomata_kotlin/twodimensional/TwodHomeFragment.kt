@@ -24,9 +24,9 @@ class TwodHomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.startButton.setOnClickListener {
+        /*binding.startButton.setOnClickListener {
             val action = TwodHomeFragmentDirections.actionTwodHomeFragmentToTwodCellGridFragmentCanvas()
             findNavController().navigate(action)
-        }
+        }*/
     }
 }
