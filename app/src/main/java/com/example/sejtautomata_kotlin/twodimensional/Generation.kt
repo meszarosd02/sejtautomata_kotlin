@@ -16,9 +16,6 @@ class Generation {
                 cells[x].add(Cell(false))
             }
         }
-        /*cells[1][1].toggle()
-        cells[1][2].toggle()
-        cells[1][3].toggle()*/
     }
 
     fun getCellNeighbors(x: Int, y: Int): Int{
@@ -28,10 +25,20 @@ class Generation {
                 if(!(i == x && j == y)){
                     sum += if(cells[(i + cols) % cols][(j + rows) % rows].isActive) 1 else 0
                 }
-                Log.i("cica1", "x: ${(i + cols) % cols}; y: ${(j + rows) % rows} isActive: ${getCell((i + cols) % cols, (j + rows) % rows).isActive}")
             }
         }
         return sum
+    }
+
+    fun getCellNeighbors2(x: Int, y: Int): Int{
+        val list =  (x-1..x+1).flatMap { i ->
+            (y-1..y+1).map{ j ->
+                if (!(i == x && j == y)) this[x][y] else Cell(false)
+            }
+        }
+        return list.count { cell ->
+            cell.isActive
+        }
     }
 
     fun getCellRow(pos: Int): ArrayList<Cell>{

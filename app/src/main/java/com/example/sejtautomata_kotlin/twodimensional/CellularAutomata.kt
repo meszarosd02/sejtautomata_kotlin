@@ -31,9 +31,9 @@ class CellularAutomata {
 
     private fun checkStartState(cell: Cell, rule: Rule): Boolean{
         return when(rule.start){
-            Rule.STARTSTATE.ANY -> {return true}
-            Rule.STARTSTATE.ACTIVE -> {return cell.isActive}
-            Rule.STARTSTATE.INACTIVE -> {return !cell.isActive}
+            Rule.STARTSTATE.ANY -> true
+            Rule.STARTSTATE.ACTIVE -> cell.isActive
+            Rule.STARTSTATE.INACTIVE -> !cell.isActive
         }
     }
 
@@ -42,7 +42,6 @@ class CellularAutomata {
         val lastGeneration = getLastGeneration()
         for(x in 0..<lastGeneration.getRowCount()){
             for(y in 0..<lastGeneration.getColCount()){
-                Log.i("cell", "x: ${x}; y: $y; n: ${lastGeneration.getCellNeighbors(x, y)}")
                 rules@ for(rule in this.rules){
                     when(rule.comp){
                         Rule.COMPARISON.LESS -> {
