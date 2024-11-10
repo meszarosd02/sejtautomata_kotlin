@@ -9,17 +9,69 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/one_dimension"
-            android:layout_width="wrap_content"
+        android:weightSum="100">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="One dimensional"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/two_dimension"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/grey"
+            android:layout_weight="30"
+            android:gravity="center">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:text="Sejtautomata szimulációs alkalmazás"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:text="Készítette: Dominik Mészáros"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Two dimensional"/>
+            android:layout_weight="70"
+            android:orientation="vertical"
+            android:gravity="center">
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:text="Válasszon az alábbi verziók közül"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/one_dimension"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_bg"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_margin="20dp"
+                android:text="Egydimenziós"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/two_dimension"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_bg"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:layout_margin="20dp"
+                android:text="Kétdimenziós"/>
+        </LinearLayout>
 
     </LinearLayout>
 </layout>
